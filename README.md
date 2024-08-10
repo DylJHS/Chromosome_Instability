@@ -20,7 +20,8 @@ Interactome Construction:
 - The STRING_Interactome_Generation.py script contains a function which generates a heterochromatin interactome by querying the STRING Protein-Protein Interaction database. This script identifies physical interactions between proteins and builds the foundational dataset for the subsequent analyses.
 
 Exploratory Analysis: 
-- The SOI_and_Control_Set_Configuration.py leverages the interactome generation function to construct the sets used througout the analysis.
+- The SOI_and_Control_Set_Configuration.py leverages the interactome generation function to construct the cancerous TCGA sets used througout the analysis.
+- The TCGA_Normal_Gene_Set_Generation.py script is used to generate gene expression datasets from TCGA, specifically focusing on the normal gene expression data.
 - TCGA_Comparative_exploratory_analysis.Rmd scripts perform an exploratory analysis, comparing the Set of Interest (SOI) in cancerous and non-cancerous conditions with control sets to identify distinct transcriptional profiles associated with cancer.
 - The TCGA_dge_analysis.Rmd script conducts differential gene expression analysis between cancerous and non-cancerous tissues to identify key genes contributing to chromosomal instability.
 
