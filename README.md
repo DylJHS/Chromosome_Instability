@@ -14,7 +14,7 @@ CONTENTS
 The repository includes scripts for data acquisition and processing, exploratory analysis, machine learning model development, and feature importance analysis. These scripts facilitate the analysis of RNA-seq data from The Cancer Genome Atlas (TCGA), the construction of protein-protein interaction networks using the STRING database, and the prediction of CIN features using a multi-output stacked ensemble model.
 
 Data Processing: 
-- The TCGA_Raw_Data_Processing.py script processes raw data from The Cancer Genome Atlas (TCGA) to prepare it for downstream analysis.
+- The TCGA_Raw_Data_Processing.py script processes raw data from The Cancer Genome Atlas (TCGA) to prepare it for all downstream analyses.
 
 Interactome Construction: 
 - The STRING_Interactome_Generation.py script contains a function which generates a heterochromatin interactome by querying the STRING Protein-Protein Interaction database. This script identifies physical interactions between proteins and builds the foundational dataset for the subsequent analyses.
@@ -26,13 +26,10 @@ Exploratory Analysis:
 - The TCGA_dge_analysis.Rmd script conducts differential gene expression analysis between cancerous and non-cancerous tissues to identify key genes contributing to chromosomal instability.
 
 Machine Learning Analysis: 
-- The Chromosome_Instability_Model.R script implements a multi-output stacked ensemble model using XGBoost to predict CIN features, including arm-level aneuploidies, homologous recombination deficiency (HRD) signatures, and pericentromeric copy number variations (CNVs).
-
-Feature Importance: 
-- The Feature_Importance_Analysis.Rmd script assesses the contributions of individual heterochromatin-associated genes to chromosomal instability features, providing insights into their roles in cancer progression.
-	
-Feature Interaction Analysis: 
-- The Feature_Interaction_Analysis.Rmd script explores interactions between CIN features, revealing selective dependencies and the complex interplay between different genomic anomalies in cancer.
+- The Train_test_split.r script partitions the RNA seq dataset into training and testing sets, facilitating model validation and performance assessment.
+- The arm_lev_aneu_weight.r script creates the class weights to account for class imbalances in arm-level aneuploidy predictions, improving prediction accuracy.
+- The base_class_tune.r, base_regress_tune.r, and meta_learner_tune.r scripts are used to tune the hyperparameters for base classifiers, base regressors, and the meta-learner in the stacked model, optimizing model performance.
+- The CIN_model_analysis.Rmd script performs a comprehensive analysis of the trained CIN model, evaluating its performance across various CIN features and performs the feature importance analyses, including the genomic 
 
 
 IMPORTANT:
