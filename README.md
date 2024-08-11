@@ -38,10 +38,6 @@ Cancer-Specific Analysis:
 The cancer-specific scripts (cancer_specific_CIN_model_analysis.Rmd, cancer_specific_arm_lev_aneu_weight.r, cancer_specific_base_class_tune.r, cancer_specific_base_regress_tune.r, cancer_specific_meta_learner_tune.r, cs_Train_test_split.R) do the same thing as the general (PanCan) scripts but are focused on using the data parsed by tissue type.
 
 
-IMPORTANT:
-The pathnames and location variables should be paid close attention to and re-configured to suit the local environments in which the analyses are being run.
-
-
 REQUIREMENTS: 
 
 The analyses rely the TCGA PanCan data: 
@@ -51,3 +47,10 @@ The analyses rely the TCGA PanCan data:
   
 The pericentromeric annotations for the human genome can be acquired from: https://genome.ucsc.edu/cgi-bin/hgc?hgsid=2264477098_2fIMqrqQPFZBX4anxrWLSety2h4q&db=hub_3671779_hs1&c=chr9&l=47548620&r=76777036&o=49055551&t=76694047&g=hub_3671779_censat&i=hsat3_9_3%28B5%29
 
+To successfully run the scripts in this repository, you will need the following software:
+- R: Version 4.0 or later is recommended. The R environment is used for various statistical analyses, machine learning, and data visualization tasks.
+- Python: Version 3.11 is required for the scripts written in Python.
+- RStudio (optional): Is highly recommended for an integrated development environment that supports R scripts and the Rmd files. I also alows for an easy loading process of the libraries used in the scripts. 
+
+CONFIGURATION NOTES:
+The pathnames and location variables should be paid close attention to and re-configured to suit the local environments in which the analyses are being run.
