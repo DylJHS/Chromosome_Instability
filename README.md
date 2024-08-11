@@ -43,6 +43,7 @@ The pathnames and location variables should be paid close attention to and re-co
 
 
 REQUIREMENTS: 
+
 The analyses rely the TCGA PanCan data which can be downloaded from: 
 - https://xenabrowser.net/datapages/?cohort=TCGA%20Pan-Cancer%20(PANCAN)&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443 (RNAseq, HRD signatures)
 - https://gdc.cancer.gov/about-data/publications/pancanatlas (Segmented CNV, Arm-level ploidy)
