@@ -44,11 +44,10 @@ The pathnames and location variables should be paid close attention to and re-co
 
 REQUIREMENTS: 
 
-The analyses rely the TCGA PanCan data which can be downloaded from: 
-- https://xenabrowser.net/datapages/?cohort=TCGA%20Pan-Cancer%20(PANCAN)&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443 (RNAseq, HRD signatures)
-- https://gdc.cancer.gov/about-data/publications/pancanatlas (Segmented CNV, Arm-level ploidy)
-- https://gdc.cancer.gov/resources-tcga-users/tcga-code-tables (metadata)
+The analyses rely the TCGA PanCan data: 
+- The gene expression Expected counts RNAseq (TOIL RSEM expected_count), gene expression Transcripts per million RNAseq (TOIL RSEM tpm), and the HRD score datasets can be accessed from https://xenabrowser.net/datapages/?cohort=TCGA%20Pan-Cancer%20(PANCAN)&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443
+-  The Segmented CNV (TCGA_mastercalls.abs_segtabs.fixed.txt) and Arm-level ploidy ( TCGA_mastercalls.abs_tables_JSedit.fixed.txt) datasets can be downloaded from https://gdc.cancer.gov/about-data/publications/pancanatlas
+- The metadata can be downloaded from https://gdc.cancer.gov/resources-tcga-users/tcga-code-tables 
   
-The pericentromeric annotations can be acquired from: 
-- https://genome.ucsc.edu/cgi-bin/hgc?hgsid=2264477098_2fIMqrqQPFZBX4anxrWLSety2h4q&db=hub_3671779_hs1&c=chr9&l=47548620&r=76777036&o=49055551&t=76694047&g=hub_3671779_censat&i=hsat3_9_3%28B5%29
+The pericentromeric annotations for the human genome can be acquired from: https://genome.ucsc.edu/cgi-bin/hgc?hgsid=2264477098_2fIMqrqQPFZBX4anxrWLSety2h4q&db=hub_3671779_hs1&c=chr9&l=47548620&r=76777036&o=49055551&t=76694047&g=hub_3671779_censat&i=hsat3_9_3%28B5%29
 
