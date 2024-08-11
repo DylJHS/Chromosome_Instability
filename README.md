@@ -14,22 +14,32 @@ CONTENTS
 The repository includes scripts for data acquisition and processing, exploratory analysis, machine learning model development, and feature importance analysis. These scripts facilitate the analysis of RNA-seq data from The Cancer Genome Atlas (TCGA), the construction of protein-protein interaction networks using the STRING database, and the prediction of CIN features using a multi-output stacked ensemble model.
 
 Data Processing: 
-- The TCGA_Raw_Data_Processing.py script processes raw data from The Cancer Genome Atlas (TCGA) to prepare it for all downstream analyses.
+- The TCGA_Raw_Data_Processing.py script reads raw TCGA RNA-seq data (either TPM or expected counts), processes it to separate sample headers, and reformats the data into a structured DataFrame where genes are represented as rows and samples as columns. The processed data is then saved as a CSV file for use in downstream analyses.
 
 Interactome Construction: 
-- The STRING_Interactome_Generation.py script contains a function which generates a heterochromatin interactome by querying the STRING Protein-Protein Interaction database. This script identifies physical interactions between proteins and builds the foundational dataset for the subsequent analyses.
+- The STRING_Interactome_Generation.py script contains a function that queries the STRING Protein-Protein Interaction (PPI) database to retrieve a list of genes interacting with a given list of proteins. It first converts the input protein names to their corresponding STRING identifiers, then uses these identifiers to fetch physically interacting genes from the STRING database. The result is a comprehensive list of unique interacting genes, which forms the foundational dataset for subsequent analyses.
 
 Exploratory Analysis: 
-- The SOI_and_Control_Set_Configuration.py leverages the interactome generation function to construct the cancerous TCGA sets used througout the analysis.
-- The TCGA_Normal_Gene_Set_Generation.py script is used to generate gene expression datasets from TCGA, specifically focusing on the normal gene expression data.
-- TCGA_Comparative_exploratory_analysis.Rmd scripts perform an exploratory analysis, comparing the Set of Interest (SOI) in cancerous and non-cancerous conditions with control sets to identify distinct transcriptional profiles associated with cancer.
-- The TCGA_dge_analysis.Rmd script conducts differential gene expression analysis between cancerous and non-cancerous tissues to identify key genes contributing to chromosomal instability.
+- The SOI_and_Control_Set_Configuration.py script transforms raw TCGA RNA-seq data into a Set-of-Interest (SOI) mRNA dataset and multiple control mRNA datasets. It leverages the Gene_list function from the STRING_Interactome_Generation.py script to retrieve genes interacting with a predefined set of proteins. The script then creates a dataset focusing on these genes of interest and generates control datasets by randomly selecting genes that match the shape of the SOI dataset. The resulting datasets are saved in CSV format for further analysis.
+- The TCGA_Normal_Gene_Set_Generation.py script generates normal (non-cancerous) gene expression datasets from the TCGA Pan-Cancer (PANCAN) project for exploratory analysis. It identifies and selects samples corresponding to healthy tissue types, excludes metastatic samples, and creates both full and subset datasets of healthy gene expression data. The script also generates control gene sets corresponding to each cancerous control set, ensuring that the same genes are used across both cancerous and healthy datasets. The resulting datasets are saved in CSV format for further analysis.
+- TCGA_Comparative_exploratory_analysis.Rmd script conducts a comprehensive exploratory analysis comparing the Set-of-Interest (SOI) gene expression profiles in cancerous and non-cancerous tissues. It leverages various statistical tests and visualizations to assess the differences between the SOI and multiple control gene sets across different conditions. The analysis includes calculating mean expression levels, performing non-parametric tests like the Friedman test and Wilcoxon signed-rank test, and generating plots to visualize expression differences. The script is crucial in identifying significant expression patterns and differences in the SOI compared to control gene sets, both in cancerous and non-cancerous contexts.
+- The TCGA_dge_analysis.Rmd script performs a Differential Gene Expression Analysis (DGEA) comparing cancerous and non-cancerous tissue samples from TCGA RNA-seq data. It uses the expected counts data to identify differentially expressed genes (DEGs) across all tissues and within specific cancer types. The analysis includes preprocessing steps like data normalization, removal of low-count genes, and creation of linear models using the voom transformation. Results are presented in the form of detailed tables and volcano plots, highlighting significant DEGs, especially those related to the Set-of-Interest (SOI). The script also extends the analysis to tissue-specific DGEA, comparing the expression profiles within different cancer subtypes.
+
+Feature Engineering: 
+- The Pericentromeric_cnv_segmentation.Rmd script segments copy number variations (CNVs) specifically in pericentromeric regions, contributing to the analysis of genomic instability in these regions.
 
 Machine Learning Analysis: 
 - The Train_test_split.r script partitions the RNA seq dataset into training and testing sets, facilitating model validation and performance assessment.
 - The arm_lev_aneu_weight.r script creates the class weights to account for class imbalances in arm-level aneuploidy predictions, improving prediction accuracy.
 - The base_class_tune.r, base_regress_tune.r, and meta_learner_tune.r scripts are used to tune the hyperparameters for base classifiers, base regressors, and the meta-learner in the stacked model, optimizing model performance.
-- The CIN_model_analysis.Rmd script performs a comprehensive analysis of the trained CIN model, evaluating its performance across various CIN features and performs the feature importance analyses, including the genomic 
+- The CIN_model_analysis.Rmd script performs a comprehensive analysis of the trained CIN model, evaluating its performance across various CIN features and performs the feature importance analyses, including the genomic
+
+Cancer-Specific Analysis:
+- The cs_Train_test_split.r script partitions the RNA seq cancer-specific datasets into training and testing sets, facilitating model validation and performance assessment.
+- The Cancer_specific_input_set_configuration.Rmd script configures the input datasets for cancer-specific analyses, tailoring the approach to each cancer type.
+- The cancer_specific_arm_lev_aneu_weight.r script adjusts class weights for arm-level aneuploidy predictions in cancer-specific datasets.
+- The cancer_specific_base_class_tune.r, cancer_specific_base_regress_turne.r, and cancer_specific_meta_learner_tune.r scripts are used for hyperparameter tuning of classifiers, regressors, and meta-learners specifically for cancer types.
+- The cancer_specific_CIN_model_analysis.Rmd script conducts detailed analyses of CIN features within specific cancer types, assessing model accuracy and feature importance.
 
 
 IMPORTANT:
