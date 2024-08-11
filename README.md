@@ -26,20 +26,16 @@ Exploratory Analysis:
 - The TCGA_dge_analysis.Rmd script performs a Differential Gene Expression Analysis (DGEA) comparing cancerous and non-cancerous tissue samples from TCGA RNA-seq data. It uses the expected counts data to identify differentially expressed genes (DEGs) across all tissues and within specific cancer types. The analysis includes preprocessing steps like data normalization, removal of low-count genes, and creation of linear models using the voom transformation. Results are presented in the form of detailed tables and volcano plots, highlighting significant DEGs, especially those related to the Set-of-Interest (SOI). The script also extends the analysis to tissue-specific DGEA, comparing the expression profiles within different cancer subtypes.
 
 Feature Engineering: 
-- The Pericentromeric_cnv_segmentation.Rmd script segments copy number variations (CNVs) specifically in pericentromeric regions, contributing to the analysis of genomic instability in these regions.
+- The Pericentromeric_cnv_segmentation.Rmd script processes TCGA PanCancer CNV data to define and analyse pericentromeric regions. It identifies contiguous satellite regions, calculates overlap-weighted CNV values within these regions for each sample, and restructures the data to provide a matrix of CNV values across the defined pericentromeric regions.
 
 Machine Learning Analysis: 
-- The Train_test_split.r script partitions the RNA seq dataset into training and testing sets, facilitating model validation and performance assessment.
-- The arm_lev_aneu_weight.r script creates the class weights to account for class imbalances in arm-level aneuploidy predictions, improving prediction accuracy.
-- The base_class_tune.r, base_regress_tune.r, and meta_learner_tune.r scripts are used to tune the hyperparameters for base classifiers, base regressors, and the meta-learner in the stacked model, optimizing model performance.
-- The CIN_model_analysis.Rmd script performs a comprehensive analysis of the trained CIN model, evaluating its performance across various CIN features and performs the feature importance analyses, including the genomic
+- The Train_test_split.r script processes RNA data files by identifying common sample IDs across multiple datasets, then randomly selecting 75% of these common IDs to create training and testing sets. It saves the resulting training, testing, and full datasets in their respective directories, ensuring consistency across the different RNA data files.
+- The arm_lev_aneu_weight.r script processes CNV data to extract arm-level aneuploidies, calculates class weights for each chromosome arm, and saves the results to a CSV file. It normalises the class weights by calculating the inverse frequency of aneuploidies across samples, ensuring that rare events are weighted appropriately for subsequent analysis. The script also reorders the arms according to a predefined order before saving the weights.
+- The base_class_tune.r, base_regress_tune.r, and meta_learner_tune.r scripts are designed to optimize machine learning models by fine-tuning their hyperparameters. They load the necessary datasets, apply cross-validation, and use grid search to identify the best model configurations for both regression and classification tasks, as well as for a meta-learning model. The scripts then save the optimal model parameters and performance metrics for further analysis and use.
+- The CIN_model_analysis.Rmd script performs a comprehensive analysis of the General CIN model, including both base and meta-layer layers. It merges RNAseq and CIN features, trains models using cross-validation, and evaluates their performance. The script also analyses genomic feature importance and interdependencies and generates visualizations to assess model accuracy and predictive power.
 
 Cancer-Specific Analysis:
-- The cs_Train_test_split.r script partitions the RNA seq cancer-specific datasets into training and testing sets, facilitating model validation and performance assessment.
-- The Cancer_specific_input_set_configuration.Rmd script configures the input datasets for cancer-specific analyses, tailoring the approach to each cancer type.
-- The cancer_specific_arm_lev_aneu_weight.r script adjusts class weights for arm-level aneuploidy predictions in cancer-specific datasets.
-- The cancer_specific_base_class_tune.r, cancer_specific_base_regress_turne.r, and cancer_specific_meta_learner_tune.r scripts are used for hyperparameter tuning of classifiers, regressors, and meta-learners specifically for cancer types.
-- The cancer_specific_CIN_model_analysis.Rmd script conducts detailed analyses of CIN features within specific cancer types, assessing model accuracy and feature importance.
+The cancer-specific scripts (cancer_specific_CIN_model_analysis.Rmd, cancer_specific_arm_lev_aneu_weight.r, cancer_specific_base_class_tune.r, cancer_specific_base_regress_tune.r, cancer_specific_meta_learner_tune.r, cs_Train_test_split.R) do the same thing as the general (PanCan) scripts but are focused on using the data parsed by tissue type.
 
 
 IMPORTANT:
