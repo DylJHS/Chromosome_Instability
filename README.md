@@ -35,8 +35,12 @@ Machine Learning Analysis:
 - The CIN_model_analysis.Rmd script performs a comprehensive analysis of the General CIN model, including both base and meta-layer layers. It merges RNAseq and CIN features, trains models using cross-validation, and evaluates their performance. The script also analyses genomic feature importance and interdependencies and generates visualizations to assess model accuracy and predictive power.
 
 Cancer-Specific Analysis:
+
 The cancer-specific scripts (cancer_specific_CIN_model_analysis.Rmd, cancer_specific_arm_lev_aneu_weight.r, cancer_specific_base_class_tune.r, cancer_specific_base_regress_tune.r, cancer_specific_meta_learner_tune.r, cs_Train_test_split.R) do the same thing as the general (PanCan) scripts but are focused on using the data parsed by tissue type.
 
+Supplemental Data: 
+
+The supplemental Data file (excel file) consists of the final performance metrics and results generated at the conclusion of the project (master's research project). The file contains the data from all models (genral and cancer-specific) at learner resolution. The results refer to the extended outputs from the feature importance analyses (genomic and interaction). The genomic feature importance (genomic FI) outputs, which are not limited to the top genes, contain the contributions across all genes.
 
 REQUIREMENTS: 
 
